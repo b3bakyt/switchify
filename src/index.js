@@ -69,6 +69,23 @@ function check(checkValue) {
     },
   };
 
+  const or = {
+    matches: val => {
+      const prevMatched = exp.matched;
+      const nextState = matches(val);
+      exp.matched = prevMatched || exp.matched;
+
+      return nextState;
+    },
+    in: val => {
+      const prevMatched = exp.matched;
+      const nextState = _in(val);
+      exp.matched = prevMatched || exp.matched;
+
+      return nextState;
+    },
+  };
+
   const states = {
     [STATES.initial]: {
       matches,
@@ -76,6 +93,7 @@ function check(checkValue) {
       else: _else,
     },
     [STATES.condition_set]: {
+      or,
       and,
       then,
     },
