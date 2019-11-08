@@ -115,4 +115,34 @@ describe('equals.then', function () {
     expect(result).equals('not matched!');
   });
 
+  it('should match objects constructed by class', function () {
+    class ClassFoo {
+      name = 'Ted';
+      method = function() {
+        return 'hi';
+      }
+    }
+    class ClassBar {
+      name = 'Ted';
+      method = function() {
+        return 'hi';
+      }
+    }
+
+    const foo = new ClassFoo();
+    const bar = new ClassBar();
+
+    let result = check(foo)
+      .equals(foo)
+      .then(val => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('function matched!');
+
+    result = check(foo)
+      .equals(bar)
+      .then(val => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('not matched!');
+  });
+
 });
