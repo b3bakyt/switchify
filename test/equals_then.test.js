@@ -153,4 +153,12 @@ describe('equals.then', function () {
     expect(result).equals('array matched!');
   });
 
+  it('should match array values by order', function () {
+    const result = check([33,44])
+      .equals([44, 33])
+      .then(val => 'array matched!')
+      .else('not matched!');
+    expect(result).equals('not matched!');
+  });
+
 });
