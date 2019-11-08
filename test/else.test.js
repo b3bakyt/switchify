@@ -20,4 +20,11 @@ describe('else', function () {
     expect(result.foo).equal(11);
   });
 
+  it('should return callback function value if no equal match found', function () {
+    const result = check(10)
+      .else(val => 'Number '+ val);
+
+    expect(result).equal('Number 10');
+  });
+
 });
