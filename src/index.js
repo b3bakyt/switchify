@@ -35,9 +35,9 @@ function check(condition) {
 
     return states[STATES.expression_set];
   }
-  function els(val) {
+  function els(data) {
     if (!exp.matched)
-      return val;
+      return getValue(data, condition);
 
     return exp.result;
   }
