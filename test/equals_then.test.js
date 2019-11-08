@@ -15,4 +15,13 @@ describe('equals.then', function () {
     expect(result).equals(11);
   });
 
+  it('should return object value if equal match found', function () {
+    const result = check(10)
+      .equals(10)
+      .then({foo: '11'})
+      .else(false);
+
+    expect(result.foo).equals('11');
+  });
+
 });
