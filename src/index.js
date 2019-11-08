@@ -10,28 +10,25 @@ function getValue(data, val) {
   if (typeof data === 'function')
     return data(val);
 
-  return val;
+  return data;
 }
 
 function check(condition) {
 
   const exp = {
     matched: false,
-    value: undefined,
     result: undefined,
   };
 
   function equals(val) {
-    if (condition = val) {
+    if (condition === val)
       exp.matched = true;
-      exp.value = val;
-    }
 
     return states[STATES.condition_set];
   }
-  function then(expression) {
+  function then(data) {
     if (exp.matched)
-      exp.result = expression(exp.value);
+      exp.result = getValue(data, condition);
 
     return states[STATES.expression_set];
   }
