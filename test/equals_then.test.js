@@ -51,4 +51,13 @@ describe('equals.then', function () {
     expect(result).equals('NaN matched!');
   });
 
+  it('should match object', function () {
+    const result = check({foo: 'hi'})
+      .equals({foo: 'hi'})
+      .then(val => 'Object matched!')
+      .else('not matched!');
+
+    expect(result).equals('Object matched!');
+  });
+
 });
