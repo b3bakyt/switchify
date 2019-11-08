@@ -1,3 +1,4 @@
+const { deepEqual } = require('./utils');
 
 const STATES = {
   initial: 'initial',
@@ -5,6 +6,7 @@ const STATES = {
   expression_set: 'expression_set',
   else_set: 'else_set',
 };
+
 
 function getValue(data, val) {
   if (typeof data === 'function')
@@ -21,7 +23,7 @@ function check(condition) {
   };
 
   function equals(val) {
-    if ([condition].includes(val))
+    if (deepEqual(condition, val))
       exp.matched = true;
 
     return states[STATES.condition_set];

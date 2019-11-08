@@ -60,4 +60,14 @@ describe('equals.then', function () {
     expect(result).equals('Object matched!');
   });
 
+  it('should match function', function () {
+    const foo = () => 'hi';
+    const result = check(foo)
+      .equals(foo)
+      .then(val => 'function matched!')
+      .else('not matched!');
+
+    expect(result).equals('function matched!');
+  });
+
 });
