@@ -60,14 +60,42 @@ describe('equals.then', function () {
     expect(result).equals('Object matched!');
   });
 
-  it('should match function', function () {
+  it('should match arrow functions by body', function () {
     const foo = () => 'hi';
+    const bar = () => 'hi';
     const result = check(foo)
-      .equals(foo)
-      .then(val => 'function matched!')
+      .equals(bar)
+      .then(bar => 'function matched!')
       .else('not matched!');
 
     expect(result).equals('function matched!');
+  });
+
+  it('should match class', function () {
+    class ClassFoo {
+      name = 'Ted';
+      method = function() {
+        return 'hi';
+      }
+    }
+    class ClassBar {
+      name = 'Ted';
+      method = function() {
+        return 'hi';
+      }
+    }
+
+    let result = check(ClassFoo)
+      .equals(ClassFoo)
+      .then(val => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('function matched!');
+
+    result = check(ClassFoo)
+      .equals(ClassBar)
+      .then(val => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('not matched!');
   });
 
 });
