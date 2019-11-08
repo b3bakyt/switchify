@@ -52,6 +52,23 @@ function check(checkValue) {
     return exp.result;
   }
 
+  const and = {
+    matches: val => {
+      const prevMatched = exp.matched;
+      const nextState = matches(val);
+      exp.matched = prevMatched && exp.matched;
+
+      return nextState;
+    },
+    in: val => {
+      const prevMatched = exp.matched;
+      const nextState = _in(val);
+      exp.matched = prevMatched && exp.matched;
+
+      return nextState;
+    },
+  };
+
   const states = {
     [STATES.initial]: {
       matches,
@@ -59,6 +76,7 @@ function check(checkValue) {
       else: _else,
     },
     [STATES.condition_set]: {
+      and,
       then,
     },
     [STATES.else_set]: undefined,
