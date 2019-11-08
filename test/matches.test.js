@@ -33,6 +33,15 @@ describe('matches.then', function () {
     expect(result).equals('Object matched!');
   });
 
+  it('should match callback result', function () {
+    const result = check({foo: 'hi'})
+      .matches(() => ({foo: 'hi'}))
+      .then(val => 'callback result matched!')
+      .else('not matched!');
+
+    expect(result).equals('callback result matched!');
+  });
+
   it('should match arrow functions by body', function () {
     const foo = () => 'hi';
     const bar = () => 'hi';
