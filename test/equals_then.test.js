@@ -161,4 +161,12 @@ describe('equals.then', function () {
     expect(result).equals('not matched!');
   });
 
+  it('should match RegExp objects', function () {
+    const result = check(new RegExp('[\w]{2}'))
+      .equals(/[w]{2}/)
+      .then(val => 'RegExp matched!')
+      .else('not matched!');
+    expect(result).equals('RegExp matched!');
+  });
+
 });

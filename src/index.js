@@ -21,7 +21,6 @@ function check(condition) {
 
     return states[STATES.condition_set];
   }
-
   function _in(val) {
     if (!Array.isArray(val))
       throw new Error('"in" operator argument must be an array.');
