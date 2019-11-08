@@ -42,4 +42,13 @@ describe('equals.then', function () {
     expect(result).equals('null matched!');
   });
 
+  it('should match NaN', function () {
+    const result = check(NaN)
+      .equals(NaN)
+      .then(val => 'NaN matched!')
+      .else('not matched!');
+
+    expect(result).equals('NaN matched!');
+  });
+
 });
