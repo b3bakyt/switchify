@@ -32,4 +32,15 @@ describe('nested .and expressions', function () {
     expect(result).equals('not matched!');
   });
 
+  it('should match .in conditions', function () {
+    let result = check('hi')
+      .matches(val => val[0] === 'h')
+      .and
+      .in(['hi', 'hello'])
+      .then(val => 'value matched!')
+      .else('not matched!');
+
+    expect(result).equals('value matched!');
+  });
+
 });
