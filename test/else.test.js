@@ -13,4 +13,11 @@ describe('else', function () {
     expect(result).equal(11);
   });
 
+  it('should return object value if no equal match found', function () {
+    const result = check(10)
+      .else({foo: 11});
+
+    expect(result.foo).equal(11);
+  });
+
 });
