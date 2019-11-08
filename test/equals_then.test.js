@@ -65,10 +65,27 @@ describe('equals.then', function () {
     const bar = () => 'hi';
     const result = check(foo)
       .equals(bar)
-      .then(bar => 'function matched!')
+      .then(val => 'function matched!')
       .else('not matched!');
 
     expect(result).equals('function matched!');
+  });
+
+  it('should match functions by body', function () {
+    function foo (){ return 'hi'};
+    function bar (){ return 'hi'};
+
+    let result = check(foo)
+      .equals(foo)
+      .then(bar => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('function matched!');
+
+    result = check(foo)
+      .equals(bar)
+      .then(val => 'function matched!')
+      .else('not matched!');
+    expect(result).equals('not matched!');
   });
 
   it('should match class', function () {
