@@ -20,6 +20,11 @@ function check(checkValue) {
       return states[STATES.condition_set];
     }
 
+    if (typeof val === 'function' && typeof checkValue !== 'function') {
+      exp.matched = val(checkValue);
+      return states[STATES.condition_set];
+    }
+
     if (deepEqual(checkValue, val))
       exp.matched = true;
 
