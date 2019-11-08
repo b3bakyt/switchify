@@ -21,13 +21,23 @@ function check(condition) {
 
     return states[STATES.condition_set];
   }
+
+  function _in(val) {
+    if (!Array.isArray(val))
+      throw new Error('"in" operator argument must be an array.');
+
+    if (val.includes(condition))
+      exp.matched = true;
+
+    return states[STATES.condition_set];
+  }
   function then(data) {
     if (exp.matched)
       exp.result = getValue(data, condition);
 
     return states[STATES.expression_set];
   }
-  function els(data) {
+  function _else(data) {
     if (!exp.matched)
       return getValue(data, condition);
 
@@ -37,14 +47,16 @@ function check(condition) {
   const states = {
     [STATES.initial]: {
       equals: equals,
-      else: els,
+      in: _in,
+      else: _else,
     },
     [STATES.condition_set]: {
       then,
     },
     [STATES.expression_set]: {
       equals,
-      else: els,
+      in: _in,
+      else: _else,
     },
     [STATES.else_set]: undefined,
   };
