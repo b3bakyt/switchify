@@ -22,4 +22,12 @@ describe('regexp', function () {
     expect(result).equals('not matched!');
   });
 
+  it('should match regexp object', function () {
+    const result = check('usd')
+      .regexp(new RegExp('^[\\w]{3}$'))
+      .then(val => 'regexp matched!')
+      .else('not matched!');
+    expect(result).equals('regexp matched!');
+  });
+
 });
