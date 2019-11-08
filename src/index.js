@@ -1,4 +1,4 @@
-const { deepEqual } = require('./utils');
+const { deepEqual, getValue } = require('./utils');
 
 const STATES = {
   initial: 'initial',
@@ -7,13 +7,6 @@ const STATES = {
   else_set: 'else_set',
 };
 
-
-function getValue(data, val) {
-  if (typeof data === 'function')
-    return data(val);
-
-  return data;
-}
 
 function check(condition) {
 

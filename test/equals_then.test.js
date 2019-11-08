@@ -145,4 +145,12 @@ describe('equals.then', function () {
     expect(result).equals('not matched!');
   });
 
+  it('should match array', function () {
+    const result = check([33,44])
+      .equals([33,44])
+      .then(val => 'array matched!')
+      .else('not matched!');
+    expect(result).equals('array matched!');
+  });
+
 });

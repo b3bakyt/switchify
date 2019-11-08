@@ -52,7 +52,15 @@ function deepEqual( x, y ) {
   return true;
 }
 
+function getValue(data, val) {
+  if (typeof data === 'function')
+    return data(val);
+
+  return data;
+}
+
 module.exports = {
+  getValue,
   deepEqual,
   isSimpleType,
 };
