@@ -8,7 +8,7 @@ describe('then', function () {
 
   it('should return simple type value', function () {
     const result = check(10)
-      .equals(10)
+      .matches(10)
       .then(11)
       .else(false);
 
@@ -17,7 +17,7 @@ describe('then', function () {
 
   it('should return object value', function () {
     const result = check(10)
-      .equals(10)
+      .matches(10)
       .then({foo: '11'})
       .else(false);
 
@@ -26,7 +26,7 @@ describe('then', function () {
 
   it('should return callback function value', function () {
     const result = check(10)
-      .equals(10)
+      .matches(10)
       .then(val => ({foo: 'Foo '+ val}))
       .else(false);
 

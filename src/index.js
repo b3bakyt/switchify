@@ -14,7 +14,12 @@ function check(checkValue) {
     result: undefined,
   };
 
-  function equals(val) {
+  function matches(val) {
+    if (val instanceof RegExp && !(checkValue instanceof RegExp)) {
+      exp.matched = val.test(checkValue);
+      return states[STATES.condition_set];
+    }
+
     if (deepEqual(checkValue, val))
       exp.matched = true;
 
@@ -25,15 +30,6 @@ function check(checkValue) {
       throw new Error('"in" operator argument must be an array.');
 
     if (val.includes(checkValue))
-      exp.matched = true;
-
-    return states[STATES.condition_set];
-  }
-  function regexp(val) {
-    if (!(val instanceof RegExp))
-      throw new Error('"matches" operator argument must be RegExp.');
-
-    if (val.test(checkValue))
       exp.matched = true;
 
     return states[STATES.condition_set];
@@ -53,8 +49,7 @@ function check(checkValue) {
 
   const states = {
     [STATES.initial]: {
-      equals: equals,
-      regexp,
+      matches,
       in: _in,
       else: _else,
     },

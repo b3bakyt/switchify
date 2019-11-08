@@ -4,11 +4,11 @@ const {
   expect,
 } = Chai;
 
-describe('equals.then', function () {
+describe('matches.then', function () {
 
   it('should match null', function () {
     const result = check(null)
-      .equals(null)
+      .matches(null)
       .then(val => 'null matched!')
       .else('not matched!');
 
@@ -17,7 +17,7 @@ describe('equals.then', function () {
 
   it('should match NaN', function () {
     const result = check(NaN)
-      .equals(NaN)
+      .matches(NaN)
       .then(val => 'NaN matched!')
       .else('not matched!');
 
@@ -26,7 +26,7 @@ describe('equals.then', function () {
 
   it('should match object', function () {
     const result = check({foo: 'hi'})
-      .equals({foo: 'hi'})
+      .matches({foo: 'hi'})
       .then(val => 'Object matched!')
       .else('not matched!');
 
@@ -37,7 +37,7 @@ describe('equals.then', function () {
     const foo = () => 'hi';
     const bar = () => 'hi';
     const result = check(foo)
-      .equals(bar)
+      .matches(bar)
       .then(val => 'function matched!')
       .else('not matched!');
 
@@ -49,13 +49,13 @@ describe('equals.then', function () {
     function bar (){ return 'hi'};
 
     let result = check(foo)
-      .equals(foo)
+      .matches(foo)
       .then(bar => 'function matched!')
       .else('not matched!');
     expect(result).equals('function matched!');
 
     result = check(foo)
-      .equals(bar)
+      .matches(bar)
       .then(val => 'function matched!')
       .else('not matched!');
     expect(result).equals('not matched!');
@@ -76,13 +76,13 @@ describe('equals.then', function () {
     }
 
     let result = check(ClassFoo)
-      .equals(ClassFoo)
+      .matches(ClassFoo)
       .then(val => 'function matched!')
       .else('not matched!');
     expect(result).equals('function matched!');
 
     result = check(ClassFoo)
-      .equals(ClassBar)
+      .matches(ClassBar)
       .then(val => 'function matched!')
       .else('not matched!');
     expect(result).equals('not matched!');
@@ -106,13 +106,13 @@ describe('equals.then', function () {
     const bar = new ClassBar();
 
     let result = check(foo)
-      .equals(foo)
+      .matches(foo)
       .then(val => 'function matched!')
       .else('not matched!');
     expect(result).equals('function matched!');
 
     result = check(foo)
-      .equals(bar)
+      .matches(bar)
       .then(val => 'function matched!')
       .else('not matched!');
     expect(result).equals('not matched!');
@@ -120,7 +120,7 @@ describe('equals.then', function () {
 
   it('should match array', function () {
     const result = check([33,44])
-      .equals([33,44])
+      .matches([33,44])
       .then(val => 'array matched!')
       .else('not matched!');
     expect(result).equals('array matched!');
@@ -128,7 +128,7 @@ describe('equals.then', function () {
 
   it('should match array values by order', function () {
     const result = check([33,44])
-      .equals([44, 33])
+      .matches([44, 33])
       .then(val => 'array matched!')
       .else('not matched!');
     expect(result).equals('not matched!');
@@ -136,9 +136,10 @@ describe('equals.then', function () {
 
   it('should match RegExp objects', function () {
     const result = check(new RegExp('[\w]{2}'))
-      .equals(/[w]{2}/)
+      .matches(/[w]{2}/)
       .then(val => 'RegExp matched!')
       .else('not matched!');
+
     expect(result).equals('RegExp matched!');
   });
 

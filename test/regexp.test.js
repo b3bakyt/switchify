@@ -4,30 +4,31 @@ const {
   expect,
 } = Chai;
 
-describe('regexp', function () {
+describe('matches', function () {
 
-  it('should match literal regexp', function () {
+  it('should match literal matches', function () {
     const result = check('usd')
-      .regexp(/^[\w]{3}$/)
-      .then(val => 'regexp matched!')
+      .matches(/^[\w]{3}$/)
+      .then(val => 'matches matched!')
       .else('not matched!');
-    expect(result).equals('regexp matched!');
+
+    expect(result).equals('matches matched!');
   });
 
-  it('should run else if not matched literal regexp', function () {
+  it('should run else if not matched literal matches', function () {
     const result = check('us')
-      .regexp(/^[\w]{3}$/)
-      .then(val => 'regexp matched!')
+      .matches(/^[\w]{3}$/)
+      .then(val => 'matches matched!')
       .else('not matched!');
     expect(result).equals('not matched!');
   });
 
-  it('should match regexp object', function () {
+  it('should match matches object', function () {
     const result = check('usd')
-      .regexp(new RegExp('^[\\w]{3}$'))
-      .then(val => 'regexp matched!')
+      .matches(new RegExp('^[\\w]{3}$'))
+      .then(val => 'matches matched!')
       .else('not matched!');
-    expect(result).equals('regexp matched!');
+    expect(result).equals('matches matched!');
   });
 
 });
