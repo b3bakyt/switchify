@@ -33,4 +33,13 @@ describe('equals.then', function () {
     expect(result.foo).equals('Foo 10');
   });
 
+  it('should match null', function () {
+    const result = check(null)
+      .equals(null)
+      .then(val => 'null matched!')
+      .else('not matched!');
+
+    expect(result).equals('null matched!');
+  });
+
 });
