@@ -21,7 +21,7 @@ function check(condition) {
   };
 
   function equals(val) {
-    if (condition === val)
+    if ([condition].includes(val))
       exp.matched = true;
 
     return states[STATES.condition_set];
