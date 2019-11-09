@@ -6,7 +6,7 @@ const {
 
 describe('.after nested expressions', function () {
 
-  it('should run .then after condition is matched', function () {
+  it('.after .then should work if condition was matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
         .after
