@@ -1,7 +1,7 @@
 {
   "name": "switchify",
   "version": "1.0.0",
-  "description": "Simple and powerful functional alternative for JavaScript switch and if ternary operator expressions.",
+  "description": "Simple and powerful functional alternative for JavaScript switch, if, and ternary operator expressions.",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/"
