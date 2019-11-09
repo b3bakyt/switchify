@@ -1,4 +1,4 @@
-const check = require('../src');
+const check = require('../index');
 const Chai  = require('chai');
 const {
   expect,
