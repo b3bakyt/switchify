@@ -51,9 +51,6 @@ const then = exp => data => {
 };
 
 const _else = exp => data => {
-  // if (exp.pass)
-  //   return undefined;
-
   const result = exp.matched ? exp.result : getValue(data, exp.checkValue);
 
   if (exp.parentExp) {
