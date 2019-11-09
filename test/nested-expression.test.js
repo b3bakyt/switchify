@@ -30,4 +30,16 @@ describe('.after nested expressions', function () {
     expect(result).equals('nested not matched!');
   });
 
+  it('.else above .after should work if no condition was matched', function () {
+    let result = check('hi')
+      .matches(val => val[0] === 'x')
+        .after
+          .matches(val => val.length === 2)
+          .then(val => 'nested value matched!')
+          .else('nested not matched!')
+      .else('not matched!');
+
+    expect(result).equals('not matched!');
+  });
+
 });
