@@ -46,12 +46,12 @@ describe('.after nested expressions', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
         .after
-        .matches(val => val.length === 2)
-          .after
-          .matches(val => val[1] === 'i')
-            .then(val => 'hi value matched!')
-          .else('hi not matched!')
-        .else('nested not matched!')
+          .matches(val => val.length === 2)
+            .after
+              .matches(val => val[1] === 'i')
+                .then(val => 'hi value matched!')
+              .else('hi not matched!')
+          .else('nested not matched!')
       .else('not matched!');
 
     expect(result).equals('hi value matched!');
@@ -61,12 +61,12 @@ describe('.after nested expressions', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
         .after
-        .matches(val => val.length === 2)
-          .after
-          .matches(val => val[1] === 'x')
-          .then(val => 'hi value matched!')
-          .else('hi not matched!')
-        .else('nested not matched!')
+          .matches(val => val.length === 2)
+            .after
+              .matches(val => val[1] === 'x')
+              .then(val => 'hi value matched!')
+              .else('hi not matched!')
+          .else('nested not matched!')
       .else('not matched!');
 
     expect(result).equals('hi not matched!');
@@ -76,12 +76,12 @@ describe('.after nested expressions', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
         .after
-        .matches(val => val.length === 3)
-          .after
-          .matches(val => val[1] === 'i')
-            .then(val => 'hi value matched!')
-          .else('hi not matched!')
-        .else('nested not matched!')
+          .matches(val => val.length === 3)
+            .after
+              .matches(val => val[1] === 'i')
+                .then(val => 'hi value matched!')
+              .else('hi not matched!')
+          .else('nested not matched!')
       .else('not matched!');
 
     expect(result).equals('nested not matched!');

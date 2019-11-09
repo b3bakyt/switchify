@@ -43,8 +43,8 @@ matches function accepts:
 - Date
 - function
 
-If function was passed it will be evaluated if expression is not a function also, 
-in this case a stringified values will be compared.
+If function was passed as argument it will be evaluated. 
+If both expression and a matching value are functions they will be stringified and compared.
 ```
 const result = check({foo: 'hi'})
       .matches(() => ({foo: 'hi'}))
