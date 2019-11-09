@@ -127,7 +127,6 @@ const APP_STATE = {
 
 
 function check(checkValue) {
-
   const expression = {
     parentExp: undefined,
     initialState: STATE.initial,
