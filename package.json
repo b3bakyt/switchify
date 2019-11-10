@@ -12,5 +12,9 @@
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/b3bakyt/switchify"
   }
 }
