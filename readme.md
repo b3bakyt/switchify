@@ -136,11 +136,11 @@ let result = check(10)
 ```
 
 #### Nested expressions
-Use .after keyword to add a nested clauses
+Use .also keyword to add a nested clauses
 ```
 let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 2)
             .then(val => 'nested value matched!')
             .else('nested not matched!')

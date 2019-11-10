@@ -2,7 +2,7 @@ const { deepEqual, getValue } = require('./utils');
 
 const STATE = {
   initial: 'initial',
-  after: 'after',
+  also: 'also',
   condition_set: 'condition_set',
   else_set: 'else_set',
 };
@@ -96,7 +96,7 @@ const or = exp => ({
   },
 });
 
-const after = parentExp => {
+const also = parentExp => {
   const exp = {
     parentExp: parentExp,
     pass: !parentExp.matched,
@@ -118,7 +118,7 @@ const APP_STATE = {
     or: or(exp),
     and: and(exp),
     then: then(exp),
-    after: after(exp),
+    also: also(exp),
   }),
   [STATE.else_set]: exp => ({
     else: _else(exp),

@@ -4,12 +4,12 @@ const {
   expect,
 } = Chai;
 
-describe('.after nested expressions', function () {
+describe('.also nested expressions', function () {
 
-  it('.after .then should work if condition was matched', function () {
+  it('.also .then should work if condition was matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 2)
             .then(val => 'nested value matched!')
           .else('nested not matched!')
@@ -18,10 +18,10 @@ describe('.after nested expressions', function () {
     expect(result).equals('nested value matched!');
   });
 
-  it('.after .else should work if no condition was matched', function () {
+  it('.also .else should work if no condition was matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 3)
             .then(val => 'nested value matched!')
           .else('nested not matched!')
@@ -30,10 +30,10 @@ describe('.after nested expressions', function () {
     expect(result).equals('nested not matched!');
   });
 
-  it('.else above .after should work if no condition was matched', function () {
+  it('.else above .also should work if no condition was matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'x')
-        .after
+        .also
           .matches(val => val.length === 2)
             .then(val => 'nested value matched!')
           .else('nested not matched!')
@@ -45,9 +45,9 @@ describe('.after nested expressions', function () {
   it('3 level condition .then should work if matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 2)
-            .after
+            .also
               .matches(val => val[1] === 'i')
                 .then(val => 'hi value matched!')
               .else('hi not matched!')
@@ -60,9 +60,9 @@ describe('.after nested expressions', function () {
   it('3 level condition .else should work if not matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 2)
-            .after
+            .also
               .matches(val => val[1] === 'x')
               .then(val => 'hi value matched!')
               .else('hi not matched!')
@@ -75,9 +75,9 @@ describe('.after nested expressions', function () {
   it('2nd level condition .then should work if matched', function () {
     let result = check('hi')
       .matches(val => val[0] === 'h')
-        .after
+        .also
           .matches(val => val.length === 3)
-            .after
+            .also
               .matches(val => val[1] === 'i')
                 .then(val => 'hi value matched!')
               .else('hi not matched!')
